@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -41,8 +42,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate($this->getValidationRules());
+
+
+
         $form_data = $request->all();
         
+        $new_post = new Post();
+        $new_post->fill($form_data);
+
+        $new_post->slug = $this->getFreeSlugFromTitle($new_post->title);
+
+        $new_post->save();
+
+        return redirect()->route('admin.posts.show', ['post' => $new_post->id]);
     }
 
     /**
@@ -94,5 +107,35 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    // ------------------- MY FUNCTIONS -------------------
+
+
+    protected function getFreeSlugFromTitle($title) {
+
+        $slug_to_save = Str::slug($title, '-');
+        $slug_base = $slug_to_save;
+
+        $existing_slug_post = Post::where('slug', '=', $slug_to_save)->first();
+
+        $counter = 1;
+
+        while($existing_slug_post) {
+
+            $slug_to_save = $slug_base . '-' . $counter;
+            $existing_slug_post = Post::where('slug', '=', $slug_to_save)->first();
+
+            $counter++;
+        };
+        return $slug_to_save;
+    }
+
+    protected function getValidationRules() {
+        return [
+            'title' => 'required|max:255',
+            'content' => 'required|max:60000',
+        ];
     }
 }
