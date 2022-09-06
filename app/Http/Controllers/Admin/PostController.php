@@ -101,7 +101,8 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $request->validate($this->getValidationRules());
+
         $form_data = $request->all();
 
         $post_to_update = Post::findOrFail($id);

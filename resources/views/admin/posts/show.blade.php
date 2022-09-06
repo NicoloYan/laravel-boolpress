@@ -11,4 +11,6 @@
     <div>Updated on: {{ $post->updated_at }}</div>
     <div>Slug: {{ $post->slug }}</div>
 
+    <a class="btn btn-primary mt-5" href="{{ route('admin.posts.edit', ['post' => $post->id]) }}">Edit post</a>
+
 @endsection
