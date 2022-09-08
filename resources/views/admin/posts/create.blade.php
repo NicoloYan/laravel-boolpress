@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
+
     <h1>
         Create a new post
     </h1>
@@ -22,6 +23,19 @@
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="Title goes here" value="{{ old('title') }}">
         </div>
+
+        <div class="mb-3">
+            <label for="category_id">Category</label>
+            <select class="form-select" id="category_id" name="category_id">
+                <option value="">None</option>
+
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                @endforeach
+
+            </select>
+        </div>
+
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
             <textarea class="form-control" id="content" name="content" rows="6">{{ old('content') }}</textarea>

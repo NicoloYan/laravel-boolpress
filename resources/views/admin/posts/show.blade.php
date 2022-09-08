@@ -11,6 +11,8 @@
     <div>Updated on: {{ $post->updated_at->format('l, d F Y') }}</div>
     <div>Slug: {{ $post->slug }}</div>
 
+    <div>Category: {{ $post->category ? $post->category->name : 'none'}}</div>
+
     <div class="mt-5">
         <a class="btn btn-primary" href="{{ route('admin.posts.edit', ['post' => $post->id]) }}">Edit post</a>
 
