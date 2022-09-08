@@ -13,6 +13,18 @@
 
     <div>Category: {{ $post->category ? $post->category->name : 'none'}}</div>
 
+    <div>
+        Tags: 
+        @if ($post->tags->isNotEmpty()) {
+            @foreach ($post->tags as $tag)
+                {{ $tag->name }} {{ !$loop->last ? ',' : '' }}
+            @endforeach
+        }
+        @else 
+            none
+        @endif
+    </div>
+
     <div class="mt-5">
         <a class="btn btn-primary" href="{{ route('admin.posts.edit', ['post' => $post->id]) }}">Edit post</a>
 
