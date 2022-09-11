@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
     <h1>
         Create a new post
     </h1>
@@ -34,6 +33,20 @@
                 @endforeach
 
             </select>
+        </div>
+
+        
+        <div class="mb-3">
+            <h5>Select tags</h5>
+
+            @foreach ($tags as $tag)
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="{{ $tag->id }}" id="tag-{{ $tag->id }}" name="tags[]" {{in_array($tag->id, old('tags', [])) ? 'checked' : ''}}>
+                    <label class="form-check-label" for="tag-{{ $tag->id }}">
+                    {{$tag->name}}
+                    </label>
+                </div>
+            @endforeach
         </div>
 
         <div class="mb-3">
