@@ -1,7 +1,6 @@
 <template>
     <section>
         <div class="container">
-            <h1 class="mt-5 mb-5">Our latest posts</h1>
 
             <div class="d-flex">
                 <div class="row row-cols-3">
@@ -18,8 +17,8 @@
 
             <nav class="mt-5">
                 <ul class="pagination">
-                    <li :class="{'disabled' : currentPage === 1}" class="page-item mr-3"><a prevent @click="getPostsFromApi(currentPage - 1)" class="page-link" href="#">Previous</a></li>
-                    <li :class="{'disabled' : currentPage === lastPage}" class="page-item"><a prevent @click="getPostsFromApi(currentPage + 1)" class="page-link" href="#">Next</a></li>
+                    <li :class="{'disabled' : currentPage === 1}" class="page-item mr-3"><a @click.prevent="getPostsFromApi(currentPage - 1)" class="page-link" href="#">Previous</a></li>
+                    <li :class="{'disabled' : currentPage === lastPage}" class="page-item"><a @click.prevent="getPostsFromApi(currentPage + 1)" class="page-link" href="#">Next</a></li>
                 </ul>
             </nav>
         </div>
