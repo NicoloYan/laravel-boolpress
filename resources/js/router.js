@@ -6,6 +6,8 @@ Vue.use(VueRouter);
 import HomePage from './pages/Homepage.vue';
 import AboutPage from './pages/Aboutpage.vue';
 import BlogPage from './pages/Blogpage.vue';
+import FourOFour from './pages/FourOFour.vue';
+
 
 const router = new VueRouter({
     mode: 'history',
@@ -24,6 +26,11 @@ const router = new VueRouter({
             path: '/blog',
             component: BlogPage,
             name: 'blog'
+        },
+        { 
+            path: '/*',
+            component: FourOFour,
+            name: 'FourOFour'
         }
     ]
 });
