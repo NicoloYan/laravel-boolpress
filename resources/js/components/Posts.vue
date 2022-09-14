@@ -9,6 +9,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{post.title}}</h5>
                                 <p class="card-text">{{shortenPostContent(post.content)}}</p>
+                                <router-link class="btn btn-primary" :to="{name: 'singlepost', params: {slug: post.slug}}">View post</router-link>
                             </div>
                         </div>
                     </div>
