@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.posts.update', ['post' => $post->id]) }}" method="post">
+    <form action="{{ route('admin.posts.update', ['post' => $post->id]) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -61,6 +61,13 @@
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
             <textarea class="form-control" id="content" name="content" rows="6">{{ old('content', $post->content) }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Post image</label>
+            <input class="form-control" type="file" id="image" name="image">
+            <h6 class="mt-3">Image preview</h6>
+            <img class="w-50" src="{{asset('storage/' . $post->cover)}}" alt="">
         </div>
 
         <input type="submit" value="Edit">

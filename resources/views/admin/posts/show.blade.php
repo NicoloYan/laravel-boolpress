@@ -4,6 +4,10 @@
 
     <h1>{{ $post->title }}</h1>
 
+    @if ($post->cover)
+        <img class="w-50" src="{{asset('storage/' . $post->cover)}}" alt="{{$post->title}}">
+    @endif
+
     <h3 class="mt-4">Content:</h3>
     <p class="mb-4">{{ $post->content }}</p>
     

@@ -2042,7 +2042,13 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get('http://127.0.0.1:8000/api/posts/' + this.$route.params.slug).then(function (response) {
-      _this.post = response.data.results;
+      if (response.data.success) {
+        _this.post = response.data.results;
+      } else {
+        _this.$router.push({
+          name: 'FourOFour'
+        });
+      }
     });
   }
 });
